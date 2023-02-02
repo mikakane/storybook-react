@@ -7,9 +7,12 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.6.0",
+    "puppeteer": "^19.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "reg-cli": "^0.17.7",
+    "storycap": "^3.1.9",
     "wait-on": "^7.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -21,6 +24,10 @@
     "storybook": "start-storybook -p 6006 -s public",
     "test-storybook": "test-storybook",
     "build-storybook": "build-storybook -s public",
+    "snapshot": "storycap --serverCmd \"npx http-server storybook-static --port 6007\" http://localhost:6007",
+    "snapshot:ci": "storycap --serverCmd \"npx http-server storybook-static --port 6007\" http://localhost:6007 -o __actual__",
+    "vrt": "reg-cli __actual__ __screenshots__ __diff__ -R report.html",
+    "update-snapshot": "reg-cli __actual__ __screenshots__ __diff__ -U",
     "test-storybook:ci": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"yarn build-storybook --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && yarn test-storybook\""
   },
   "eslintConfig": {
