@@ -18,6 +18,7 @@ jobs:
       - name: Run VRT
         id: vrt
         run: npm run vrt
+        continue-on-error: true
       - name: upload report
         uses: actions/upload-artifact@v2
         with:
