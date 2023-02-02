@@ -13,6 +13,3 @@ jobs:
         run: npm ci
       - name: Build Storybook tests
         run: npm run test-storybook:ci
-  serve:
-    needs: build
-  
